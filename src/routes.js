@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const Moestuin = require("./models/moestuin");
-const auth = require("../middleware/auth.js");
 
 router.get("/", (req, res) => {
     console.log("/ route called");
@@ -27,7 +26,7 @@ router.get("/Moestuin", async(req, res) => {
 });
 
 /**
- * Return on single Moestuin in the database using .findById(objectId)
+ * Retrun on single Moestuin in the database using .findById(objectId)
  * Uses req.params.id to get the id from the url
  * /moestuin/(id) return the moestuin with the id
  */
@@ -44,7 +43,7 @@ router.get("/Moestuin/:id", async(req, res) => {
 
 /**
  * Adds one single Moestuin to the database using .create({data})
- * Uses req.body which means an object is passed
+ * Uses req.body wich means an object is passed
  * /moestuin/create is the appropriate route
  */
 router.post("/Moestuin/create", async(req, res) => {
