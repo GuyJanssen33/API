@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const Moestuin = require("./models/moestuin");
 const auth = require("../middleware/auth.js");
-const { admin, gebruiker } = require("../middleware/roles.js");
 
 router.get("/", (req, res) => {
     console.log("/ route called");
@@ -48,7 +47,7 @@ router.get("/Moestuin/:id", async(req, res) => {
  * Uses req.body which means an object is passed
  * /moestuin/create is the appropriate route
  */
-router.post("/Moestuin/create", [auth, admin], async(req, res) => {
+router.post("/Moestuin/create", async(req, res) => {
     console.log("/Moestuin/create route called");
     try {
         res.send(await Moestuin.create(req.body));
@@ -66,7 +65,7 @@ router.post("/Moestuin/create", [auth, admin], async(req, res) => {
  * /campus/update/6191576ea6578c26ce2cdbc1 updates the campus with id 6191576ea6578c26ce2cdbc1
  * with the data passed in req.body
  */
-router.put("/Moestuin/update/:id", [auth, admin], async(req, res) => {
+router.put("/Moestuin/update/:id", async(req, res) => {
     console.log("/moestuin/update/:id route called");
     try {
         res.send(
@@ -85,7 +84,7 @@ router.put("/Moestuin/update/:id", [auth, admin], async(req, res) => {
  * /campus/delete/6191576ea6578c26ce2cdbc1 deletes the campus
  * with id 6191576ea6578c26ce2cdbc1 from the database
  */
-router.delete("/Moestuin/delete/:id", [auth, admin], async(req, res) => {
+router.delete("/Moestuin/delete/:id", async(req, res) => {
     console.log("/Moestuin/delete/:id route called");
     try {
         res.send(await Moestuin.findByIdAndDelete(req.params.id));
